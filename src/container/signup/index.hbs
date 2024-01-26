@@ -4,8 +4,22 @@
 }}
 
 <div class="page page--background">
-    <div>Test</div>
-    <div>Test</div>
+    <header>
+        {{> back-button}}
+    </header>
+
+    <form class="page__section">
+        <h1 class="page__title">Реєстрація</h1>
+
+        <div class="form">
+            <div class="form__item">
+                test
+                <span name="email" class="form__error">Помилка</span>
+            </div>
+        </div>
+        <button class="button" type="button">Зареєструватися</button>
+        <span class="alert alert__error">Увага, помилка!</span>
+    </form>
 </div>
 
 {{!
