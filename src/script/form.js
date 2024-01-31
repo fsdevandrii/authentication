@@ -14,8 +14,12 @@ export class Form {
   error = {}
 
   change = (name, value) => {
+    console.log(name, value)
+
     const error = this.validate(name, value)
     this.value[name] = value
+
+    console.log(error)
 
     if (error) {
       this.setError(name, error)
@@ -25,5 +29,29 @@ export class Form {
       delete this.error[name]
     }
   }
-  setError = (name, error) => {}
+
+  setError = (name, error) => {
+    const span = document.querySelector(
+      `.form__error[name="${name}"]`,
+    )
+
+    const field = document.querySelector(
+      `validation[name="${name}"]`,
+    )
+
+    if (span) {
+      span.classList.toggle(
+        'form__error--active',
+        Boolean(error),
+      )
+      span.innerText = error || ''
+    }
+
+    if (field) {
+      field.classList.toggle(
+        'validation--active',
+        Boolean(error),
+      )
+    }
+  }
 }
