@@ -12,14 +12,11 @@ export class Form {
 
   value = {}
   error = {}
+  disabled = true
 
   change = (name, value) => {
-    console.log(name, value)
-
     const error = this.validate(name, value)
     this.value[name] = value
-
-    console.log(error)
 
     if (error) {
       this.setError(name, error)
@@ -28,6 +25,8 @@ export class Form {
       this.setError(name, null)
       delete this.error[name]
     }
+
+    this.checkDisabled()
   }
 
   setError = (name, error) => {
@@ -53,5 +52,55 @@ export class Form {
         Boolean(error),
       )
     }
+  }
+
+  checkDisabled = () => {
+    let disabled = false
+
+    Object.values(this.FIELD_NAME).forEach((name) => {
+      if (
+        this.error[name] ||
+        this.value[name] === undefined
+      ) {
+        disabled = true
+      }
+    })
+
+    const el = document.querySelector(`.button`)
+
+    if (el) {
+      el.classList.toggle(
+        'button--disaled',
+        Boolean(disabled),
+      )
+    }
+
+    this.disabled = disabled
+  }
+
+  validateAll = () => {
+    Object.values(this.FIELD_NAME).forEach((name) => {
+      const error = this.validate(name, this.value[name])
+
+      if (error) {
+        this.setError(name, error)
+      }
+    })
+  }
+
+  setAlert = (status, text) => {
+    const el = document.querySelector(`.alert`)
+
+    if (status === 'progress') {
+      el.className = 'alert alert--progress'
+    } else if (status === 'success') {
+      el.className = 'alert alert--success'
+    } else if (status === 'error') {
+      el.className = 'alert alert--error'
+    } else {
+      el.className = 'alert alert--disabled'
+    }
+
+    if (text) el.innerText = text
   }
 }
