@@ -35,7 +35,7 @@ export class Form {
     )
 
     const field = document.querySelector(
-      `validation[name="${name}"]`,
+      `.validation[name="${name}"]`,
     )
 
     if (span) {
@@ -70,7 +70,7 @@ export class Form {
 
     if (el) {
       el.classList.toggle(
-        'button--disaled',
+        'button--disabled',
         Boolean(disabled),
       )
     }
