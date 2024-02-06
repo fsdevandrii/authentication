@@ -7,10 +7,10 @@ class User {
 
   static #list = []
 
-  static count = 1
+  static #count = 1
 
   constructor({ email, password, role }) {
-    this.id = this.count++
+    this.id = User.#count++
 
     this.email = String(email).toLowerCase()
     this.password = password
