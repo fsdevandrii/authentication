@@ -31,7 +31,7 @@ class Session {
   static create = (user) => {
     const session = new Session(user)
 
-    this.#list.push(user)
+    this.#list.push(session)
 
     return session
   }
