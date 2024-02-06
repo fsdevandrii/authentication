@@ -1,3 +1,5 @@
-import '../../script/test'
-
-console.log('container')
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.session) {
+    const { user } = window.session
+  }
+})
