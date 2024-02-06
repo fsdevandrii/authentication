@@ -294,8 +294,6 @@ router.post('/signup-confirm', function (req, res) {
       message: err.message,
     })
   }
-
-  console.log(code, token)
 })
 // ================================================================
 // Підключаємо роутер до бек-енду
