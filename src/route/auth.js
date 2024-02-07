@@ -216,9 +216,9 @@ router.post('/recovery-confirm', function (req, res) {
       message: 'Пароль змінено',
       session,
     })
-  } catch (err) {
+  } catch (error) {
     return res.status(400).json({
-      message: err.message,
+      message: error.message,
     })
   }
 })
@@ -291,7 +291,7 @@ router.post('/signup-confirm', function (req, res) {
     })
   } catch (error) {
     return res.status(400).json({
-      message: err.message,
+      message: error.message,
     })
   }
 })
