@@ -56,6 +56,8 @@ router.get('/signup', function (req, res) {
   // ↑↑ сюди вводимо JSON дані
 })
 
+// ===============================================================
+
 router.post('/signup', function (req, res) {
   const { email, password, role } = req.body
 
@@ -226,15 +228,14 @@ router.post('/recovery-confirm', function (req, res) {
 
 // ================================================================
 
-// router.get Створює нам один ентпоїнт
-
 // ↙️ тут вводимо шлях (PATH) до сторінки
 router.get('/signup-confirm', function (req, res) {
-  const { renew } = req.query
+  const { renew, email } = req.query
 
-  if ((renew, email)) {
+  if (renew) {
     Confirm.create(email)
   }
+
   // res.render генерує нам HTML сторінку
 
   // ↙️ cюди вводимо назву файлу з сontainer
@@ -246,7 +247,6 @@ router.get('/signup-confirm', function (req, res) {
 
     // вказуємо назву сторінки
     title: 'Signup confirm page',
-
     // ... сюди можна далі продовжувати додавати потрібні технічні дані, які будуть використовуватися в layout
 
     // вказуємо дані,
@@ -364,6 +364,31 @@ router.post('/login', function (req, res) {
     })
   }
 })
+// ================================================================
+// router.get Створює нам один ентпоїнт
+
+// ↙️ тут вводимо шлях (PATH) до сторінки
+router.get('/logout', function (req, res) {
+  // res.render генерує нам HTML сторінку
+
+  // ↙️ cюди вводимо назву файлу з сontainer
+  return res.render('logout', {
+    // вказуємо назву контейнера
+    name: 'logout',
+    // вказуємо назву компонентів
+    component: [],
+
+    // вказуємо назву сторінки
+    title: 'Logout page',
+
+    // ... сюди можна далі продовжувати додавати потрібні технічні дані, які будуть використовуватися в layout
+
+    // вказуємо дані,
+    data: {},
+  })
+  // ↑↑ сюди вводимо JSON дані
+})
+
 // ================================================================
 // Підключаємо роутер до бек-енду
 module.exports = router
